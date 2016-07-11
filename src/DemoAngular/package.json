@@ -1,0 +1,11 @@
+{
+	"version": "1.0.0",
+	"name": "demo angular",
+	"private": true,
+	"dependencies": {
+			"angular": "^1.5.7",
+			"bootstrap": "^3.3.6"
+	},
+	"devDependencies": {
+	}
+}
