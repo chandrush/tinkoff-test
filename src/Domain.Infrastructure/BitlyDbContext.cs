@@ -40,7 +40,7 @@ namespace Domain.Infrastructure
 
 				//! если код регистрозависимый, то нужно убедиться, 
 				//что колонка в базе будет иметь соотвествующий collation, либо
-				//TODO: кастомный sql-мигратор, аннотация для создания collation
+				//TODO: кастомизировать sql-мигратор, аннотация для создания collation
 				tb.Property(t => t.ShortenLinkCode)
 					.HasMaxLength(2000)
 					.IsRequired();

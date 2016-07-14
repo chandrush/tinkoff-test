@@ -27,7 +27,7 @@ namespace Domain.Stores
 		/// </summary>
 		/// <param name="userId">Идентификатор пользователя.</param>
 		/// <returns>Список ссылок пользователя.</returns>
-		Task<IEnumerable<Link>> GetLinksAsync(Guid userId);
+		Task<IEnumerable<Link>> GetUserLinksAsync(Guid userId);
 
 		/// <summary>
 		/// Возвращает ссылку по короткому коду.

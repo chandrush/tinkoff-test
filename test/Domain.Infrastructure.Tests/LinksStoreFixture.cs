@@ -53,7 +53,7 @@ namespace Domain.Infrastructure.Tests
 				Assert.NotNull(link);
 
 				//получение списка ссылок пользователя
-				var links = await bitlyUow.Links.GetLinksAsync(userId);
+				var links = await bitlyUow.Links.GetUserLinksAsync(userId);
 				Assert.Equal(1, links.Count());
 			}
 		}
@@ -83,10 +83,10 @@ namespace Domain.Infrastructure.Tests
 					await bitlyUow.SaveAsync();
 				}
 
-				var links1 = await bitlyUow.Links.GetLinksAsync(userId1);
+				var links1 = await bitlyUow.Links.GetUserLinksAsync(userId1);
 				Assert.Equal(1, links1.Count());
 
-				var links2 = await bitlyUow.Links.GetLinksAsync(userId2);
+				var links2 = await bitlyUow.Links.GetUserLinksAsync(userId2);
 				Assert.Equal(1, links2.Count());
 
 				//возвращается одна и та же ссылка

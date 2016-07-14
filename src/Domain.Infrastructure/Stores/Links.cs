@@ -34,7 +34,7 @@ namespace Domain.Infrastructure.Stores
 				.FirstOrDefaultAsync(x => x.ShortenLinkCode == shortLinkCode);
 		}
 
-		public async Task<IEnumerable<Link>> GetLinksAsync(Guid userId)
+		public async Task<IEnumerable<Link>> GetUserLinksAsync(Guid userId)
 		{
 			return (await _bitlyDbContext.UserLinks
 				.Include(x => x.Link)

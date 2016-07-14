@@ -22,7 +22,7 @@ namespace Domain.Models
 			//ef
 		}
 
-		public Link(DateTime creationDateUtc, string originalLink, string shortenLinkCode)
+		public Link(string originalLink, string shortenLinkCode, DateTime creationDateUtc)
 		{
 			if (string.IsNullOrWhiteSpace(originalLink))
 				throw new ArgumentNullException(@"originalLink");
@@ -40,7 +40,7 @@ namespace Domain.Models
 		}
 
 		public Link(string originalLink, string shortenLinkCode)
-			: this(DateTime.UtcNow, originalLink, shortenLinkCode)
+			: this(originalLink, shortenLinkCode, DateTime.UtcNow)
 		{
 			
 		}
