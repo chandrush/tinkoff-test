@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Domain.Infrastructure.Stores
+namespace Infrastructure.Stores
 {
     public class Links: ILinks
 	{
-		private readonly IBitlyDbContext _bitlyDbContext;
+		private readonly IBitlyDbContextSets _bitlyDbContext;
 
-		internal Links(IBitlyDbContext bitlyDbContext)
+		internal Links(IBitlyDbContextSets bitlyDbContext)
 		{
 			_bitlyDbContext = bitlyDbContext;
 		}

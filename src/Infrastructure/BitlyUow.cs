@@ -1,11 +1,11 @@
 ﻿using Domain.Base;
-using Domain.Infrastructure.Stores;
 using Domain.Stores;
+using Infrastructure.Stores;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Infrastructure
+namespace Infrastructure
 {
     public class BitlyUow: IBitlyUow
     {

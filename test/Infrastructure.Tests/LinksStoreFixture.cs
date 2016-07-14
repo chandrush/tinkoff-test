@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Domain.Stores;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;

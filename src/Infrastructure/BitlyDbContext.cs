@@ -1,9 +1,9 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain.Infrastructure
+namespace Infrastructure
 {
-    public class BitlyDbContext: DbContext, IBitlyDbContext
+    public class BitlyDbContext: DbContext, IBitlyDbContextSets
     {
 		public DbSet<Link> Links { get; set; }
 

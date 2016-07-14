@@ -3414,7 +3414,7 @@
           "netstandard1.6/Domain.Base.dll": {}
         }
       },
-      "Domain.Infrastructure/1.0.0": {
+      "Infrastructure/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
@@ -3424,10 +3424,10 @@
           "NETStandard.Library": "1.6.0"
         },
         "compile": {
-          "netstandard1.6/Domain.Infrastructure.dll": {}
+          "netstandard1.6/Infrastructure.dll": {}
         },
         "runtime": {
-          "netstandard1.6/Domain.Infrastructure.dll": {}
+          "netstandard1.6/Infrastructure.dll": {}
         }
       }
     }
@@ -9296,17 +9296,17 @@
       "path": "../../src/Domain.Base/project.json",
       "msbuildProject": "../../src/Domain.Base/Domain.Base.xproj"
     },
-    "Domain.Infrastructure/1.0.0": {
+    "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../../src/Domain.Infrastructure/project.json",
-      "msbuildProject": "../../src/Domain.Infrastructure/Domain.Infrastructure.xproj"
+      "path": "../../src/Infrastructure/project.json",
+      "msbuildProject": "../../src/Infrastructure/Infrastructure.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
       "Domain >= 1.0.0-*",
       "Domain.Base >= 1.0.0-*",
-      "Domain.Infrastructure >= 1.0.0-*",
+      "Infrastructure >= 1.0.0-*",
       "Microsoft.AspNetCore.TestHost >= 1.0.0",
       "Microsoft.EntityFrameworkCore.InMemory >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 1.0.0",

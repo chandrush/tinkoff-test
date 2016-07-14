@@ -1,7 +1,7 @@
 ﻿using Domain.Base;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Domain.Infrastructure
+namespace Infrastructure
 {
 	public class DbContextTransactionWrapper : ITransaction
 	{

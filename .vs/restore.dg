@@ -1,1 +1,6 @@
-#:C:\HomeWork\DemoAngular\src\Domain.Infrastructure.Data.MsSql\Domain.Infrastructure.Data.MsSql.xproj
+#:C:\HomeWork\DemoAngular\test\Infrastructure.Tests\Infrastructure.Tests.xproj
+C:\HomeWork\DemoAngular\test\Infrastructure.Tests\Infrastructure.Tests.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj
+C:\HomeWork\DemoAngular\test\Infrastructure.Tests\Infrastructure.Tests.xproj|C:\HomeWork\DemoAngular\src\Domain.Base\Domain.Base.xproj
+C:\HomeWork\DemoAngular\test\Infrastructure.Tests\Infrastructure.Tests.xproj|C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj
+C:\HomeWork\DemoAngular\src\Domain\Domain.xproj|C:\HomeWork\DemoAngular\src\Domain.Base\Domain.Base.xproj
+C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj

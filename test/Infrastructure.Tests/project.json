@@ -4,7 +4,7 @@
 	"dependencies": {
 			"Domain": "1.0.0-*",
 			"Domain.Base": "1.0.0-*",
-			"Domain.Infrastructure": "1.0.0-*",
+			"Infrastructure": "1.0.0-*",
 			"dotnet-test-xunit": "2.2.0-preview2-build1029",
 			"Microsoft.AspNetCore.TestHost": "1.0.0",
     "Microsoft.EntityFrameworkCore.InMemory": "1.0.0",

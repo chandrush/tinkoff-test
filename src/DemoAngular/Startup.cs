@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using DemoAngular.Middleware;
 using System;
 using Microsoft.Extensions.Configuration;
-using Domain.Infrastructure;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Domain.Stores;
 

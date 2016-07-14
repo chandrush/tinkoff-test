@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Domain.Infrastructure.Utils
+namespace Infrastructure.Utils
 {
 	public static class DbExtensions
 	{
