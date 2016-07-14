@@ -14,17 +14,29 @@ namespace Domain.Models
     {
 		private Guid _userId;
 
-		private int _linkId;
-
 		UserLink()
 		{
 			//ef
 		}
 
-		public UserLink(Guid userId, int linkId)
+		private UserLink(Guid userId)
 		{
+			if (userId == Guid.Empty)
+				throw new ArgumentException(@"userId", "Не корректное значение идентификатора пользователя, ожидается не пустое значение.");
 			_userId = userId;
-			_linkId = linkId;
+		}
+
+		public UserLink(Guid userId, int linkId)
+			:this(userId)
+		{
+			LinkId = linkId;
+		}
+
+		public UserLink(Guid userId, Link link)
+			: this(userId)
+		{
+			LinkId = link.Id;
+			Link = link;
 		}
 
 		/// <summary>
@@ -35,6 +47,11 @@ namespace Domain.Models
 		/// <summary>
 		/// Id ссылки.
 		/// </summary>
-		public int LinkId => _linkId;
-    }
+		public int LinkId { get; private set; }
+
+		/// <summary>
+		/// Навигация на ссылку.
+		/// </summary>
+		public Link Link { get; private set; }
+	}
 }

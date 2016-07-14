@@ -1,14 +1,15 @@
 ﻿using Domain.Base;
 using System;
+using System.Threading;
 
-namespace Domain
+namespace Domain.Models
 {
 	/// <summary>
 	/// Ссылка.
 	/// </summary>
 	public class Link: IdentityPersistenceBase<Link, int>
 	{
-		private DateTime _creationDateUtc;
+		private DateTime _creationDateUTC;
 
 		private string _originalLink;
 
@@ -23,22 +24,31 @@ namespace Domain
 
 		public Link(DateTime creationDateUtc, string originalLink, string shortenLinkCode)
 		{
-			_creationDateUtc = creationDateUtc;
+			if (string.IsNullOrWhiteSpace(originalLink))
+				throw new ArgumentNullException(@"originalLink");
+			if (string.IsNullOrWhiteSpace(shortenLinkCode))
+				throw new ArgumentNullException(@"shortenLinkCode");
+
+			if (originalLink.Length > 2000)
+				throw new ArgumentOutOfRangeException(@"originalLink", "Наружено ограничение на длину ссылки в 2000 символов.");
+			if (shortenLinkCode.Length > 2000)
+				throw new ArgumentOutOfRangeException(@"shortenLinkCode", "Наружено ограничение на длину ссылки в 2000 символов.");
+
+			_creationDateUTC = creationDateUtc;
 			_originalLink = originalLink;
 			_shortenLinkCode = shortenLinkCode;
 		}
 
 		public Link(string originalLink, string shortenLinkCode)
+			: this(DateTime.UtcNow, originalLink, shortenLinkCode)
 		{
-			_creationDateUtc = DateTime.UtcNow;
-			_originalLink = originalLink;
-			_shortenLinkCode = shortenLinkCode;
+			
 		}
 
 		/// <summary>
 		/// Дата и время создания ссылки в формате UTC.
 		/// </summary>
-		public DateTime CreationDateUTC => _creationDateUtc;
+		public DateTime CreationDateUTC => _creationDateUTC;
 
 		/// <summary>
 		/// Оригинальная ссылка.
@@ -58,12 +68,9 @@ namespace Domain
 		/// <summary>
 		/// Увеличивает количество использований ссылки на 1.
 		/// </summary>
-		/// <remarks>
-		/// Не потокобезопасно.
-		/// </remarks>
 		public void IncrementLinkUses()
 		{
-			_usesNumber++;
+			Interlocked.Increment(ref _usesNumber);
 		}
 	}
 }

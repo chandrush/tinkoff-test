@@ -10,6 +10,6 @@ namespace Domain.Base
 	{
 		Task SaveAsync();
 
-		Task Rollback();
+		Task<ITransaction> BeginTransactionAsync();
 	}
 }
