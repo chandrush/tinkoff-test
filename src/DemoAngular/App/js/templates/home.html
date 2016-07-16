@@ -1,0 +1,10 @@
+﻿<div class="row" style="display: flex; justify-content: center;">
+	<section class="input-group" style="max-width: 600px">
+		<div>
+			<input type="text" maxlength="2000" class="form-control" placeholder="enter a link to shorten" ng-model="link" ng-disabled="inputDisabled" />
+		</div>
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-default" ng-click="shorten()" ng-disabled="inputDisabled">shorten</button>
+		</span>
+	</section>
+</div>

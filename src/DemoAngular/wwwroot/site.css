@@ -1,0 +1,25 @@
+body {
+  padding-top: 50px; }
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center; }
+
+/*section.link-input 
+{ 
+	width: 100%; 
+	display: table; 
+	padding: 1em 0 0; 
+
+	& div
+	  {
+		display: table-cell; width: 100%;
+	  }
+	& input 
+	{ 
+		width: 100%; 
+		padding: .5em 1em; 
+	}
+	& button 
+	{ color: black; padding: .5em 1em; white-space: nowrap; margin: 0 0 0 1em; }
+}*/

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Domain.Stores;
+using Domain.AppService;
 
 namespace DemoAngular
 {
@@ -80,6 +81,7 @@ namespace DemoAngular
 			services.AddScoped<IBitlyUow, BitlyUow>();
 			services.AddScoped(sp => new Func<IBitlyUow>(() => new BitlyUow(sp.GetService<BitlyDbContext>())));
 
+			services.AddTransient<AppServiceFactory>(sp => new AppServiceFactory());
 			//services.AddTransient(sp => new Func<IMainUow, AuthenticationService>(uw => new AuthenticationService(uw)));
 		}
 	}

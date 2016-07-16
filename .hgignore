@@ -1,2 +1,3 @@
 syntax: glob
 src/DemoAngular/project.lock.json
+src/DemoAngular/node_modules/

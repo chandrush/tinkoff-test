@@ -2,7 +2,15 @@
 	ViewData["Title"] = "tinkoff.test";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-	Home page.
-	Hello, @Context.User.Identity.Name
+<div >
+	
+	<ng-view></ng-view>
+	@*<hello-world></hello-world>*@
+	@*<div ng-controller="LinksCtrl">
+		<ul>
+			<li ng-repeat="link in links">
+				<span>{{link.originalLink}}</span>
+			</li>
+		</ul>
+	</div>*@
 </div>
