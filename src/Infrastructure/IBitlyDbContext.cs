@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    public interface IBitlyDbContext: IDisposable, IBitlyDbContextSets
+	/// <summary>
+	/// Сегрегация интерфейса DbContext: управляющие процедуры.
+	/// </summary>
+	public interface IBitlyDbContext: IDisposable, IBitlyDbContextSets
     {
 		DatabaseFacade Database { get; }
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken));

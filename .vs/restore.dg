@@ -1,13 +1,17 @@
 #:C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj
 C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj
 C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Infrastructure.Interfaces\Infrastructure.Interfaces.xproj
+C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj
 C:\HomeWork\DemoAngular\src\Domain\Domain.xproj|C:\HomeWork\DemoAngular\src\Domain.Base\Domain.Base.xproj
 C:\HomeWork\DemoAngular\src\Infrastructure.Interfaces\Infrastructure.Interfaces.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj
+C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj
+C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Infrastructure.Interfaces\Infrastructure.Interfaces.xproj
 #:C:\HomeWork\DemoAngular\src\DemoAngular\DemoAngular.xproj
 C:\HomeWork\DemoAngular\src\DemoAngular\DemoAngular.xproj|C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj
 C:\HomeWork\DemoAngular\src\DemoAngular\DemoAngular.xproj|C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj
 C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj
 C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Infrastructure.Interfaces\Infrastructure.Interfaces.xproj
+C:\HomeWork\DemoAngular\src\Domain.Stores.Infrastructure\Domain.Stores.Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj
 C:\HomeWork\DemoAngular\src\Domain\Domain.xproj|C:\HomeWork\DemoAngular\src\Domain.Base\Domain.Base.xproj
 C:\HomeWork\DemoAngular\src\Infrastructure.Interfaces\Infrastructure.Interfaces.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj
 C:\HomeWork\DemoAngular\src\Infrastructure\Infrastructure.xproj|C:\HomeWork\DemoAngular\src\Domain\Domain.xproj

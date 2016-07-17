@@ -1530,6 +1530,23 @@
           "netstandard1.6/Domain.Base.dll": {}
         }
       },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Domain": "1.0.0",
+          "Infrastructure.Interfaces": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/Infrastructure.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/Infrastructure.dll": {}
+        }
+      },
       "Infrastructure.Interfaces/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
@@ -5193,6 +5210,11 @@
       "path": "../Domain.Base/project.json",
       "msbuildProject": "../Domain.Base/Domain.Base.xproj"
     },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Infrastructure/project.json",
+      "msbuildProject": "../Infrastructure/Infrastructure.xproj"
+    },
     "Infrastructure.Interfaces/1.0.0": {
       "type": "project",
       "path": "../Infrastructure.Interfaces/project.json",
@@ -5202,6 +5224,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Domain >= 1.0.0-*",
+      "Infrastructure >= 1.0.0-*",
       "Infrastructure.Interfaces >= 1.0.0-*",
       "Microsoft.EntityFrameworkCore >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Relational >= 1.0.0",

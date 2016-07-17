@@ -52,8 +52,7 @@ gulp.task("webconfig", function ()
 gulp.task("assets", function ()
 {
 	var assets = [
-		paths.bootstrapDir + "css/bootstrap.min.css",
-		paths.angularDir + "angular.min.js"
+		paths.bootstrapDir + "css/bootstrap.min.css"
 	];
 	return gulp.src(assets)
 	  .pipe(gulp.dest(paths.webroot + "/"));
