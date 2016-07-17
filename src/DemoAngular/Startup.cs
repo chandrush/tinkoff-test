@@ -75,6 +75,11 @@ namespace DemoAngular
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
+					name: "psevdo_static",
+					template: "{History?}",
+					defaults: new { controller = "Home", action = "Index" });
+
+				routes.MapRoute(
 					name: "default",
 					template: "{controller=Home}/{action=Index}");
 			});
