@@ -49,7 +49,7 @@
 	
 	const bitlyApp = angular.module('bitlyApp', [angularRoute]);
 	
-	__webpack_require__(10)(bitlyApp);
+	__webpack_require__(9)(bitlyApp);
 	__webpack_require__(8)(bitlyApp);
 	__webpack_require__(5)(bitlyApp);
 
@@ -32630,10 +32630,10 @@
 			});
 	
 			$routeProvider.when("/", {
-				template: __webpack_require__(13),
+				template: __webpack_require__(12),
 				controller: "HomeCtrl"
 			}).when("/history", {
-				template: __webpack_require__(12),
+				template: __webpack_require__(11),
 				controller: "HistoryCtrl"
 			}).otherwise({ redirectTo: "/" });
 		}]);
@@ -32663,6 +32663,8 @@
 	
 			$scope.inputDisabled = false;
 	
+			$scope.inputValidationErrorMessage = '';
+	
 			$scope.shorten = function () {
 				if ($scope.link) {
 					$scope.inputDisabled = true;
@@ -32672,6 +32674,10 @@
 						$scope.inputDisabled = false;
 					});
 				}
+			};
+	
+			$scope.isInutValid = function () {
+				return scope.inputValidationErrorMessage && $scope.inputValidationErrorMessage.length > 0;
 			};
 		}]);
 	};
@@ -32690,47 +32696,41 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function (ngModule) {
-		ngModule.directive("helloWorld", helloWorldFn);
-	
-		function helloWorldFn() {
-			return {
-				restrict: "E",
-				scope: {},
-				template: __webpack_require__(11),
-				controllerAs: "vm",
-				controller: function () {
-					const vm = this;
-					vm.greeting = "Hello World";
-				}
-			};
-		}
+		__webpack_require__(10)(ngModule);
 	};
 
 /***/ },
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = function (ngModule) {
-		__webpack_require__(9)(ngModule);
+		ngModule.directive('showErrors', function () {
+			return {
+				restrict: 'A',
+				require: '^form',
+				link: function (scope, el, attrs, formCtrl) {
+					var inputEl = el[0].querySelector("[name]");
+					var inputNgEl = angular.element(inputEl);
+					var inputName = inputNgEl.attr('name');
+					inputNgEl.bind('blur', function () {
+						el.toggleClass('has-error', formCtrl[inputName].$invalid);
+					});
+				}
+			};
+		});
 	};
 
 /***/ },
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = "{{vm.greeting}}";
+	module.exports = "<h1>history</h1>\r\n\r\n<div ng-controller=\"HistoryCtrl\">\r\n\t<ul>\r\n\t\t<li ng-repeat=\"link in links\">\r\n\t\t\t<span>{{link.originalLink}}</span>\r\n\t\t</li>\r\n\t</ul>\r\n</div>";
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = "<h1>history</h1>\r\n\r\n<div ng-controller=\"HistoryCtrl\">\r\n\t<ul>\r\n\t\t<li ng-repeat=\"link in links\">\r\n\t\t\t<span>{{link.originalLink}}</span>\r\n\t\t</li>\r\n\t</ul>\r\n</div>";
-
-/***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-	module.exports = "<div class=\"row\" style=\"display: flex; justify-content: center;\">\r\n\t<section class=\"input-group\" style=\"max-width: 600px\">\r\n\t\t<div>\r\n\t\t\t<input type=\"text\" maxlength=\"2000\" class=\"form-control\" placeholder=\"enter a link to shorten\" ng-model=\"link\" ng-disabled=\"inputDisabled\" />\r\n\t\t</div>\r\n\t\t<span class=\"input-group-btn\">\r\n\t\t\t<button type=\"button\" class=\"btn btn-default\" ng-click=\"shorten()\" ng-disabled=\"inputDisabled\">shorten</button>\r\n\t\t</span>\r\n\t</section>\r\n</div>\r\n";
+	module.exports = "<form novalidate class=\"simple-form\" name=\"mainForm\" >\r\n\t<div class=\"row form-group\" style=\"display: flex; justify-content: center;\" show-errors>\r\n\t\t<section class=\"input-group\" style=\"max-width: 600px\" >\r\n\t\t\t<div>\r\n\t\t\t\t<input type=\"url\" maxlength=\"2000\" required name=\"inputUrl\" class=\"form-control\" placeholder=\"enter a link to shorten\" ng-model=\"link\" ng-disabled=\"inputDisabled\"/>\r\n\t\t\t</div>\r\n\t\t\t<span class=\"input-group-btn\">\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" ng-click=\"shorten()\" ng-disabled=\"inputDisabled\">shorten</button>\r\n\t\t\t</span>\r\n\t\t</section>\r\n\t</div>\r\n</form>";
 
 /***/ }
 /******/ ]);

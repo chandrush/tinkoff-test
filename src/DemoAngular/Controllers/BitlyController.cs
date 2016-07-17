@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Domain.Stores;
 using Domain.AppService;
 using Domain.Models;
+using System.Text.RegularExpressions;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,6 +15,8 @@ namespace DemoAngular.Controllers
     [Route("api/[controller]")]
     public class BitlyController : Controller
     {
+		private static readonly Regex _urlMatchRegex = new Regex(@"(?<Protocol>\w+):\/\/(?<Domain>[\w@][\w.:@]+)\/?[\w\.?=%&=\-@/$,]*");
+
 		private readonly AppServiceFactory _appServiceFactory;
 
 		public BitlyController(AppServiceFactory appServiceFactory)
@@ -39,12 +42,16 @@ namespace DemoAngular.Controllers
 
         // POST api/values
         [HttpPost]
-        public string Post([FromBody]string value)
+        public IActionResult Post([FromBody]string value)
         {
-			//var bitlyAppService = _appServiceFactory.GetBitlyAppService();
-			//bitlyAppService.ShortenLink(value);
 
-			return "shorten url";
+			if (value == null || !_urlMatchRegex.IsMatch(value))
+				return BadRequest("Сокрщаемая строка не соответствует формату URL!");
+
+			var bitlyAppService = _appServiceFactory.GetBitlyAppService();
+			bitlyAppService.ShortenLink(value);
+
+			return Ok("shorten url");
         }
     }
 }

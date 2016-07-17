@@ -6,6 +6,8 @@
 
 		$scope.inputDisabled = false;
 
+		$scope.inputValidationErrorMessage = '';
+
 		$scope.shorten = function()
 		{
 			if ($scope.link)
@@ -23,5 +25,11 @@
 				});
 			}
 		}
+
+		$scope.isInutValid = function()
+		{
+			return scope.inputValidationErrorMessage && $scope.inputValidationErrorMessage.length > 0;
+		}
+
 	}]);
 }
