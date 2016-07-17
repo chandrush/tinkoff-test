@@ -9,6 +9,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Domain.Stores;
 using Domain.AppService;
+using DemoAngular.Middleware.SecurityHeadersMiddleware;
 
 namespace DemoAngular
 {
@@ -54,6 +55,9 @@ namespace DemoAngular
 			{
 				//TODO: app.UseExceptionHandler("/Home/Error");
 			}
+
+			app.UseSecurityHeadersMiddleware(new SecurityHeadersBuilder()
+				.AddDefaultSecurePolicy());
 
 			app.UseStaticFiles();
 
