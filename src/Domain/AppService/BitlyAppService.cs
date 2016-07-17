@@ -1,4 +1,6 @@
 ﻿using Domain.Models;
+using Domain.Services;
+using Domain.Stores;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,23 +14,49 @@ namespace Domain.AppService
 	/// </summary>
     public class BitlyAppService
     {
+		private IBitlyUow _bitlyUow;
+
+		public BitlyAppService(IBitlyUow bitlyUow)
+		{
+			_bitlyUow = bitlyUow;
+		}
+
 		/// <summary>
 		/// Процедура сжатия ссылки.
 		/// </summary>
 		/// <param name="url">Оригинальная ссылка.</param>
-		public void ShortenLink(string url)
+		/// <returns>Сокращенная ссылка.</returns>
+		public async Task<string> ShortenLinkAsync(string url, Guid userId)
 		{
+			using (var transaction = await _bitlyUow.BeginTransactionAsync())
+			{
+				UserLink userLink;
+				var shortenLink = await _bitlyUow.Links.GetLinkAsync(url);
+				if (shortenLink == null)
+				{
+					var bitlyService = new BitlyService(new ShortenSha1());
+					shortenLink = await bitlyService.ShortenLinkAsync(url);
+					_bitlyUow.Links.AddLink(shortenLink);
+					userLink = new UserLink(userId, shortenLink.Id); //TODO: ?похоже баг в efcore1.0, нельзя просто засунуть shortenLink, то же с аггрегатом
+				}
+				else
+				{
+					userLink = await _bitlyUow.Links.GetUserLinkAsync(userId, shortenLink.Id) ?? 
+						new UserLink(userId, shortenLink.Id);
+				}
 
+				if (userLink.IsTransient)
+					_bitlyUow.Links.AddUserLink(userLink);
+				await _bitlyUow.SaveAsync();
+				transaction.Commit();
+				return shortenLink.ShortenLinkCode; //TODO: получать хост текущего приложения и конкатенировать
+			}
 		}
 
-		public async Task<IEnumerable<Link>> GetLinksAsync(Guid userId) //TODO: возвращать нужно DTO
+		public async Task<IEnumerable<Link>> GetLinksAsync(Guid userId)
 		{
-			var testLinks = new[] {
-				new Link("http://yandex.ru", "http://bitly.ru/ya", DateTime.UtcNow),
-				new Link("http://google.ru", "http://bitly.ru/goo", DateTime.UtcNow - TimeSpan.FromDays(1)),
-			};
-
-			return testLinks;
+			//TODO: вообще говоря, из AppService возвращать нужно DTO
+			return await _bitlyUow.Links.GetUserLinksAsync(userId);
 		}
     }
 }

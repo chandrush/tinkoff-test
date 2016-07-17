@@ -17,7 +17,12 @@ namespace Infrastructure.Stores
 			_bitlyDbContext = bitlyDbContext;
 		}
 
-		public void AddLink(UserLink userLink)
+		public void AddLink(Link link)
+		{
+			_bitlyDbContext.Links.Add(link);
+		}
+
+		public void AddUserLink(UserLink userLink)
 		{
 			_bitlyDbContext.UserLinks.Add(userLink);
 		}
@@ -41,6 +46,14 @@ namespace Infrastructure.Stores
 				.Where(x => x.UserId == userId)
 				.ToListAsync().ConfigureAwait(false))
 				.Select(x => x.Link);
+		}
+
+		public async Task<UserLink> GetUserLinkAsync(Guid userId, int linkId)
+		{
+			return (await _bitlyDbContext.UserLinks
+				.Include(x => x.Link)
+				.Where(x => x.UserId == userId && x.LinkId == linkId)
+				.FirstOrDefaultAsync().ConfigureAwait(false));
 		}
 
 		public void UpdateLink(Link link)

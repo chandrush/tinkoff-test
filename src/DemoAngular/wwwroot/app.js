@@ -32665,12 +32665,16 @@
 	
 			$scope.inputValidationErrorMessage = '';
 	
-			$scope.shorten = function () {
+			$scope.submitForm = function () {
 				if ($scope.link) {
 					$scope.inputDisabled = true;
-					$http.post("/api/bitly", $scope.link).success(function (data, status, headers, config) {
-						$scope.link = data;
-					}).error(function () {}).then(function () {
+					$http({
+						method: 'POST',
+						url: "/api/bitly",
+						data: JSON.stringify($scope.link),
+						headers: { 'Content-Type': 'application/json' }
+					}).then(function (response) {
+						$scope.link = response.data;
 						$scope.inputDisabled = false;
 					});
 				}
@@ -32730,7 +32734,7 @@
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = "<form novalidate class=\"simple-form\" name=\"mainForm\" >\r\n\t<div class=\"row form-group\" style=\"display: flex; justify-content: center;\" show-errors>\r\n\t\t<section class=\"input-group\" style=\"max-width: 600px\" >\r\n\t\t\t<div>\r\n\t\t\t\t<input type=\"url\" maxlength=\"2000\" required name=\"inputUrl\" class=\"form-control\" placeholder=\"enter a link to shorten\" ng-model=\"link\" ng-disabled=\"inputDisabled\"/>\r\n\t\t\t</div>\r\n\t\t\t<span class=\"input-group-btn\">\r\n\t\t\t\t<button type=\"button\" class=\"btn btn-default\" ng-click=\"shorten()\" ng-disabled=\"inputDisabled\">shorten</button>\r\n\t\t\t</span>\r\n\t\t</section>\r\n\t</div>\r\n</form>";
+	module.exports = "<form novalidate class=\"simple-form\" name=\"mainForm\" ng-submit=\"submitForm()\">\r\n\t<div class=\"row form-group\" style=\"display: flex; justify-content: center;\" show-errors>\r\n\t\t<section class=\"input-group\" style=\"max-width: 600px\" >\r\n\t\t\t<div>\r\n\t\t\t\t<input type=\"url\" maxlength=\"2000\" required name=\"inputUrl\" class=\"form-control\" placeholder=\"enter a link to shorten\" ng-model=\"link\" ng-disabled=\"inputDisabled\"/>\r\n\t\t\t</div>\r\n\t\t\t<span class=\"input-group-btn\">\r\n\t\t\t\t<button type=\"submit\" class=\"btn btn-default\" ng-disabled=\"inputDisabled\">shorten</button>\r\n\t\t\t</span>\r\n\t\t</section>\r\n\t</div>\r\n</form>";
 
 /***/ }
 /******/ ]);

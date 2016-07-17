@@ -13,8 +13,14 @@ namespace Domain.Stores
 		/// <summary>
 		/// Добавление ссылки.
 		/// </summary>
+		/// <param name="link">Добавляемая ссылка.</param>
+		void AddLink(Link link);
+
+		/// <summary>
+		/// Добавление ссылки.
+		/// </summary>
 		/// <param name="userLink">Добавляемая ссылка пользователя.</param>
-		void AddLink(UserLink userLink);
+		void AddUserLink(UserLink userLink);
 
 		/// <summary>
 		/// Обновление ссылки.
@@ -28,6 +34,14 @@ namespace Domain.Stores
 		/// <param name="userId">Идентификатор пользователя.</param>
 		/// <returns>Список ссылок пользователя.</returns>
 		Task<IEnumerable<Link>> GetUserLinksAsync(Guid userId);
+
+		/// <summary>
+		/// Возвращает ссылку пользователя
+		/// </summary>
+		/// <param name="userId">Идентификатор пользователя.</param>
+		/// <param name="linkId">Идентификатор ссылки.</param>
+		/// <returns></returns>
+		Task<UserLink> GetUserLinkAsync(Guid userId, int linkId);
 
 		/// <summary>
 		/// Возвращает ссылку по короткому коду.

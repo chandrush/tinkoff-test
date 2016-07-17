@@ -8,19 +8,20 @@
 
 		$scope.inputValidationErrorMessage = '';
 
-		$scope.shorten = function()
+		$scope.submitForm = function ()
 		{
 			if ($scope.link)
 			{
 				$scope.inputDisabled = true;
-				$http.post("/api/bitly", $scope.link)
-				.success(function (data, status, headers, config)
-				{
-					$scope.link = data;
+				$http({
+					method: 'POST',
+					url: "/api/bitly",
+					data: JSON.stringify($scope.link),
+					headers: { 'Content-Type': 'application/json' }
 				})
-				.error(function () { })
-				.then(function ()
+				.then(function (response)
 				{
+					$scope.link = response.data;
 					$scope.inputDisabled = false;
 				});
 			}

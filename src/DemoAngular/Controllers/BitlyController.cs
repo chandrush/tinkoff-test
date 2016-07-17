@@ -7,6 +7,8 @@ using Domain.Stores;
 using Domain.AppService;
 using Domain.Models;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
+using DemoAngular.Utils;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,29 +31,26 @@ namespace DemoAngular.Controllers
 
         // GET: api/values
         [HttpGet]
-        public async Task<IEnumerable<Link>> Get()
+		[Authorize]
+		public async Task<IEnumerable<Link>> Get()
         {
-			Guid userId;
-			if (!Guid.TryParse(ControllerContext.HttpContext.User.Identity.Name, out userId))
-				return null; //TODO: сообщение об ошибке аутентификации
-
 			var bitlyAppService = _appServiceFactory.GetBitlyAppService();
-			var links = await bitlyAppService.GetLinksAsync(userId);
+			var links = await bitlyAppService.GetLinksAsync(HttpContext.GetUserId());
 			return links;
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]string value)
+		[Authorize]
+        public async Task<IActionResult> Post([FromBody]string url)
         {
-
-			if (value == null || !_urlMatchRegex.IsMatch(value))
-				return BadRequest("Сокрщаемая строка не соответствует формату URL!");
+			if (url == null || !_urlMatchRegex.IsMatch(url))
+				return BadRequest("Сокращаемая строка не соответствует формату URL!");
 
 			var bitlyAppService = _appServiceFactory.GetBitlyAppService();
-			bitlyAppService.ShortenLink(value);
-
-			return Ok("shorten url");
+			var shortenUrl = await bitlyAppService.ShortenLinkAsync(url, HttpContext.GetUserId());
+			var fullUrl = String.Concat( HttpContext.Request.Scheme, "://", HttpContext.Request.Host, "/", shortenUrl);
+			return Ok(fullUrl);
         }
     }
 }

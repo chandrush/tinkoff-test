@@ -13,7 +13,7 @@ namespace Domain.Services
 
 		public BitlyService(IShortLinkGenerationAlgorithm shortenAlgorithm)
 		{
-			if (_shortenAlgorithm == null)
+			if (shortenAlgorithm == null)
 				throw new ArgumentNullException(nameof(shortenAlgorithm));
 
 			_shortenAlgorithm = shortenAlgorithm;

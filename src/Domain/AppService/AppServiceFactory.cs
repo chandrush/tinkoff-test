@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Domain.Stores;
 
 namespace Domain.AppService
 {
     public class AppServiceFactory
     {
-		public AppServiceFactory()
-		{
+		private IBitlyUow _biltyUow;
 
+		public AppServiceFactory(IBitlyUow biltyUow)
+		{
+			_biltyUow = biltyUow;
 		}
 
 		public BitlyAppService GetBitlyAppService()
 		{
-			return new BitlyAppService();
+			return new BitlyAppService(_biltyUow);
 		}
     }
 }

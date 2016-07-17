@@ -26,6 +26,8 @@ namespace Infrastructure
 			
 			modelBuilder.Entity<Link>(tb => 
 			{
+				tb.Property(t => t.Id)
+					.ValueGeneratedOnAdd();
 				tb.HasKey(t => t.Id);
 
 				tb.Property(t => t.UsesNumber)
@@ -50,6 +52,8 @@ namespace Infrastructure
 
 			modelBuilder.Entity<UserLink>(tb => 
 			{
+				tb.Property(t => t.Id)
+					   .ValueGeneratedOnAdd();
 				tb.HasKey(t => t.Id);
 
 				tb.Property(t => t.UserId)

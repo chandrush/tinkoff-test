@@ -85,8 +85,7 @@ namespace DemoAngular
 			services.AddScoped<IBitlyUow, BitlyUow>();
 			services.AddScoped(sp => new Func<IBitlyUow>(() => new BitlyUow(sp.GetService<BitlyDbContext>())));
 
-			services.AddTransient<AppServiceFactory>(sp => new AppServiceFactory());
-			//services.AddTransient(sp => new Func<IMainUow, AuthenticationService>(uw => new AuthenticationService(uw)));
+			services.AddTransient<AppServiceFactory>(sp => new AppServiceFactory(sp.GetService<IBitlyUow>()));
 		}
 	}
 }
