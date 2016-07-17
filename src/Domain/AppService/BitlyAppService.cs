@@ -3,7 +3,6 @@ using Domain.Models;
 using Domain.Services;
 using Domain.Stores;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,7 +56,36 @@ namespace Domain.AppService
 		public async Task<IEnumerable<LinkDto>> GetLinksAsync(Guid userId, string hostBase)
 		{
 			return (await _bitlyUow.Links.GetUserLinksAsync(userId))
-				.Select(x => new LinkDto(x.OriginalLink, hostBase + x.ShortenLinkCode, x.UsesNumber, x.CreationDateUTC));
+				.Select(x => new LinkDto(x.OriginalLink, hostBase + "i/" + x.ShortenLinkCode, x.UsesNumber, x.CreationDateUTC));
+		}
+
+		/// <summary>
+		/// Метод получения полного url по короткому url для редиректа.
+		/// </summary>
+		/// <param name="shortUrlCode">Короткий код url</param>
+		/// <returns></returns>
+		public async Task<string> GetRedirectionAsync(string shortUrlCode)
+		{
+			using (var transaction = await _bitlyUow.BeginTransactionAsync())
+			{
+				var link = await _bitlyUow.Links.GetLinkByShortCodeAsync(shortUrlCode);
+				if (link != null)
+				{
+					link.IncrementLinkUses();
+					_bitlyUow.Links.UpdateLink(link);
+					await _bitlyUow.SaveAsync();
+					transaction.Commit();
+					//TODO: повторное извлечение и инкремент в случае ошибки на concurrencyToken
+					//для оригинального bitly было бы выгоднее использовать какой-нибудь лёгкий вариант очереди для инкрементов
+					//для проверки существования ссылки выгодно использовать Bloom filter
+
+					return link.OriginalLink;
+				}
+				else
+				{
+					return "/"; //TODO: подготовить страничку с сообщением, что такая ссылка не зарегистрирована
+				}
+			}
 		}
     }
 }

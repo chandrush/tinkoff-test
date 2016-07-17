@@ -6,7 +6,7 @@
 					{{link.originalLink}}
 				</td>
 				<td>
-					{{link.shortenLink}}
+					<a href="{{link.shortenLink}}" target="_self">{{link.shortenLink}}</a>
 				</td>
 				<td>
 					{{link.creationDateUTC | date : "yyyy-MM-dd HH:mm"}} <!--TODO: перевод в локальное время клиента-->

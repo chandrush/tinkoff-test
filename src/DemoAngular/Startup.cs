@@ -75,9 +75,16 @@ namespace DemoAngular
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
+					name: "shortlink",
+					template: "i/{id}",
+					defaults: new { controller = "ShortLinkRedirector", action = "Index" });
+
+				routes.MapRoute(
 					name: "psevdo_static",
 					template: "{History?}",
 					defaults: new { controller = "Home", action = "Index" });
+
+				
 
 				routes.MapRoute(
 					name: "default",

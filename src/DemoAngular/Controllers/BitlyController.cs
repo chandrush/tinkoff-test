@@ -48,7 +48,7 @@ namespace DemoAngular.Controllers
 
 			var bitlyAppService = _appServiceFactory.GetBitlyAppService();
 			var shortenUrl = await bitlyAppService.ShortenLinkAsync(url, HttpContext.GetUserId());
-			var fullUrl = String.Concat(HttpContext.GetHostBaseUrl(), shortenUrl);
+			var fullUrl = String.Concat(HttpContext.GetHostBaseUrl(), "i/",shortenUrl);
 			return Ok(fullUrl);
         }
     }
