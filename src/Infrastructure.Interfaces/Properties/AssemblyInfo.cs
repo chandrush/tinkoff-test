@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Infrastructure")]
+[assembly: AssemblyProduct("Infrastructure.Interfaces")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,8 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3f46d769-da1d-434b-acb2-a3be37409bf9")]
-
-[assembly: InternalsVisibleTo("DemoAngular")]
-
-[assembly: InternalsVisibleTo("Infrastructure.Tests")] //вообще по хорошему на единственный TestBase в котором конфигурируется DbContext
+[assembly: Guid("1a4efe98-1210-456c-a8c3-a242756523eb")]

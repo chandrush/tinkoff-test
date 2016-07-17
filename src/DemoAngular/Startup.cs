@@ -94,6 +94,7 @@ namespace DemoAngular
 
 		private void AddBusinessServices(IServiceCollection services)
 		{
+			services.AddScoped<IBitlyDbContext, BitlyDbContext>();
 			services.AddScoped<IBitlyUow, BitlyUow>();
 			services.AddScoped(sp => new Func<IBitlyUow>(() => new BitlyUow(sp.GetService<BitlyDbContext>())));
 

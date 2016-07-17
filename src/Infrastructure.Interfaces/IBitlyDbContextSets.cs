@@ -11,7 +11,7 @@ namespace Infrastructure
 	/// <summary>
 	/// Сегрегация интерфейса DbContext: сеты сущностей.
 	/// </summary>
-    interface IBitlyDbContextSets
+    public interface IBitlyDbContextSets
     {
 		DbSet<Link> Links { get; set; }
 

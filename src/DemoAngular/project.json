@@ -18,10 +18,11 @@
 		"Microsoft.EntityFrameworkCore": "1.0.0",
 		"Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
 		"Microsoft.AspNetCore.StaticFiles": "1.0.0",
-		"Microsoft.EntityFrameworkCore.Tools": {
-			"version": "1.0.0-preview2-final",
-			"type": "build"
-		}
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview2-final",
+      "type": "build"
+    },
+    "Domain.Stores.Infrastructure": "1.0.0-*"
 	},
 
 	"tools": {

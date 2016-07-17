@@ -9,11 +9,11 @@ namespace Infrastructure
 {
     public class BitlyUow: IBitlyUow
     {
-		private readonly BitlyDbContext _bitlyDbContext;
+		private readonly IBitlyDbContext _bitlyDbContext;
 
 		private Lazy<ILinks> _links;
 
-        public BitlyUow(BitlyDbContext bitlyDbContext)
+        public BitlyUow(IBitlyDbContext bitlyDbContext)
         {
 			_bitlyDbContext = bitlyDbContext;
 			_links = new Lazy<ILinks>(() => new Links(_bitlyDbContext), LazyThreadSafetyMode.ExecutionAndPublication);

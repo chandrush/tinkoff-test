@@ -19,7 +19,6 @@ namespace Infrastructure.Utils
 			}
 			catch (Exception ex)
 			{
-				//TODO: нужно ли здесь перехватывать исключение?
 				Console.WriteLine(ex);
 				throw;
 			}

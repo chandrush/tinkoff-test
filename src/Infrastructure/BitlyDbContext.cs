@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
-    public class BitlyDbContext: DbContext, IBitlyDbContextSets
-    {
+    internal class BitlyDbContext: DbContext, IBitlyDbContextSets, IBitlyDbContext
+	{
 		public DbSet<Link> Links { get; set; }
 
 		public DbSet<UserLink> UserLinks { get; set; }
