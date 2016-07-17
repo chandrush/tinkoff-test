@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.AppService.Dto;
+using Domain.Models;
 using Domain.Services;
 using Domain.Stores;
 using System;
@@ -53,10 +54,10 @@ namespace Domain.AppService
 			}
 		}
 
-		public async Task<IEnumerable<Link>> GetLinksAsync(Guid userId)
+		public async Task<IEnumerable<LinkDto>> GetLinksAsync(Guid userId, string hostBase)
 		{
-			//TODO: вообще говоря, из AppService возвращать нужно DTO
-			return await _bitlyUow.Links.GetUserLinksAsync(userId);
+			return (await _bitlyUow.Links.GetUserLinksAsync(userId))
+				.Select(x => new LinkDto(x.OriginalLink, hostBase + x.ShortenLinkCode, x.UsesNumber, x.CreationDateUTC));
 		}
     }
 }

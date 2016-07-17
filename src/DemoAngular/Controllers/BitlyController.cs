@@ -7,6 +7,7 @@ using Domain.Models;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using DemoAngular.Utils;
+using Domain.AppService.Dto;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,10 +31,10 @@ namespace DemoAngular.Controllers
         // GET: api/values
         [HttpGet]
 		[Authorize]
-		public async Task<IEnumerable<Link>> Get()
+		public async Task<IEnumerable<LinkDto>> Get()
         {
 			var bitlyAppService = _appServiceFactory.GetBitlyAppService();
-			var links = await bitlyAppService.GetLinksAsync(HttpContext.GetUserId());
+			var links = await bitlyAppService.GetLinksAsync(HttpContext.GetUserId(), HttpContext.GetHostBaseUrl());
 			return links;
         }
 
@@ -47,7 +48,7 @@ namespace DemoAngular.Controllers
 
 			var bitlyAppService = _appServiceFactory.GetBitlyAppService();
 			var shortenUrl = await bitlyAppService.ShortenLinkAsync(url, HttpContext.GetUserId());
-			var fullUrl = String.Concat( HttpContext.Request.Scheme, "://", HttpContext.Request.Host, "/", shortenUrl);
+			var fullUrl = String.Concat(HttpContext.GetHostBaseUrl(), shortenUrl);
 			return Ok(fullUrl);
         }
     }

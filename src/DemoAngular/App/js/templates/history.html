@@ -1,9 +1,21 @@
-﻿<h1>history</h1>
-
-<div ng-controller="HistoryCtrl">
-	<ul>
-		<li ng-repeat="link in links">
-			<span>{{link.originalLink}}</span>
-		</li>
-	</ul>
+﻿<div ng-controller="HistoryCtrl">
+	<table class="table" style="text-align: left;">
+		<tbody>
+			<tr ng-repeat="link in links">
+				<td>
+					{{link.originalLink}}
+				</td>
+				<td>
+					{{link.shortenLink}}
+				</td>
+				<td>
+					{{link.creationDateUTC | date : "yyyy-MM-dd HH:mm"}} <!--TODO: перевод в локальное время клиента-->
+				</td>
+				<td>
+					{{link.usesNumber}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
 </div>

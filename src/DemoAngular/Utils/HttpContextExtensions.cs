@@ -9,5 +9,10 @@ namespace DemoAngular.Utils
 		{
 			return Guid.Parse(httpContext.User.Identity.Name);
 		}
+
+		public static string GetHostBaseUrl(this HttpContext httpContext)
+		{
+			return string.Concat(httpContext.Request.Scheme, "://", httpContext.Request.Host, "/");
+		}
     }
 }
